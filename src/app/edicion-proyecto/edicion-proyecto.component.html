@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Edicion de cliente</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="">Descripción</label>
+                <input type="text" name="" id="" class="form-control" #descripcion [value]="proyecto.descripcion">
+            </div>
+            <br>
+            <select class="form-select" #cliente>
+                <option selected >--- Cliente ---</option>
+                <option *ngFor="let c of listaClientes" [value]="c.id" [selected]="c.id === proyecto.cliente.id">{{c.nombre}} {{c.apPaterno}} {{c.apMaterno}}</option>            </select>
+            <br>
+            <div class="form-group">
+               <button class="btn btn-success" (click)="guardarProyecto()">Guardar</button>
+            </div>
+        </div>
+    </div>
+    
+</div>

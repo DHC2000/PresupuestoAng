@@ -1,0 +1,94 @@
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo proyecto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Descripción</label>
+                                <input type="text" name="" id="" class="form-control" #descripcion>
+                            </div>
+
+                            <div class="form-group">                                
+                                <label for="">Cliente</label>
+                                <select class="form-select" #cliente>
+                                    <option selected>--- Cliente ---</option>
+                                    <option *ngFor="let c of listaClientes" [value]="c.id">{{c.nombre}} {{c.apPaterno}} {{c.apMaterno}}</option>
+                                </select>
+                            </div>
+
+                          
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerar</button>
+                    <button type="button" class="btn btn-primary" (click)="guardarProyecto()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Registar nuevo proyecto
+    </button>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Listado de proyectos</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Número de contacto</th>
+            
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of listaProyectos">
+                        <th scope="row">{{c.id}}</th>
+                        <td>{{c.descripcion}}</td>
+                        <td>{{c.cliente.nombre}} {{c.cliente.apPaterno}} {{c.cliente.apMaterno}}</td>
+                        <td>{{c.cliente.telefono}}</td>
+
+                        <td>
+                            <a class="btn btn-success">Detalle</a>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-warning" [routerLink]="['/proyecto/editar',c.id]"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <div class="row">
+                              <small>Editar</small>                    
+                          </div>
+                          </td>
+
+                          <td>
+                            <button class="btn btn-danger" (click)="eliminarPry(c.id)"><i class="fa-solid fa-trash-can"></i></button>
+                            <div class="row">
+                              <small>Eliminar</small>                    
+                            </div>
+                          </td>
+
+                        <td>
+                            <a class="btn btn-primary">Ver Proyecto</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
